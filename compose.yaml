@@ -1,0 +1,9 @@
+﻿services:
+  sep-backend:
+    image: sep-backend
+    ports:
+      - "5148:8080"
+      - "7006:8081"
+    build:
+      context: .
+      dockerfile: Dockerfile
