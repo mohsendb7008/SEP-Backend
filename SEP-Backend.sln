@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEP-Backend", "SEP-Backend.csproj", "{1D3A5B33-B4A2-4A51-81F2-DE7D85D03457}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEP-Backend", "src\SEP-Backend.csproj", "{1D3A5B33-B4A2-4A51-81F2-DE7D85D03457}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{67BA8417-55DA-42F0-936D-A8816769648C}"
 	ProjectSection(SolutionItems) = preProject
