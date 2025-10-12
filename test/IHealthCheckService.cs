@@ -1,4 +1,4 @@
-namespace SEP_Backend.HealthCheck;
+namespace Tests;
 
 public interface IHealthCheckService
 {

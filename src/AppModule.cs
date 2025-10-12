@@ -1,5 +1,4 @@
 using Autofac;
-using SEP_Backend.HealthCheck;
 using SEP_Backend.User;
 
 namespace SEP_Backend;
@@ -13,6 +12,5 @@ public class AppModule : Module
             .AsSelf()
             .InstancePerDependency();
         builder.RegisterModule<UserModule>();
-        builder.RegisterModule<HealthCheckModule>();
     }
 }

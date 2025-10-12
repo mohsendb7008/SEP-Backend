@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using FakeItEasy;
 using FluentAssertions;
-using SEP_Backend.HealthCheck;
 using Xunit;
 
 namespace Tests;
