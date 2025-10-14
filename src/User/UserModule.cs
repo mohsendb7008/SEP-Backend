@@ -10,5 +10,13 @@ public class UserModule : Module
             .RegisterType<UserRepository>()
             .As<IUserRepository>()
             .InstancePerLifetimeScope();
+        builder
+            .RegisterType<JwtConfig>()
+            .AsSelf()
+            .SingleInstance();
+        builder
+            .RegisterType<JwtTokenGenerator>()
+            .AsSelf()
+            .SingleInstance();
     }
 }
