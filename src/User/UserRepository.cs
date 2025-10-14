@@ -10,6 +10,9 @@ public class UserRepository(AppDbContext dbContext) : IUserRepository
         return users;
     }
 
+    public async Task<User?> GetByIdAsync(Guid userId) =>
+        await dbContext.Users.FindAsync(userId);
+
     public async Task<bool> CreateAsync(User user)
     {
         var exists = await dbContext.Users.FindAsync(user.Id) != null; 
