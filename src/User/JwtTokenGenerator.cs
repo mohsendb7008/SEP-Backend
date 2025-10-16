@@ -7,12 +7,13 @@ namespace SEP_Backend.User;
 
 public class JwtTokenGenerator(JwtConfig config)
 {
-    public string Generate(Guid userId)
+    public string Generate(User user)
     {
         var credentials = new SigningCredentials(config.GetSigningKey(), SecurityAlgorithms.HmacSha256);
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.UniqueName, userId.ToString())
+            new Claim(JwtRegisteredClaimNames.UniqueName, user.Id.ToString()),
+            new Claim(ClaimTypes.Role, user.Role.ToString())
         };
         var token = new JwtSecurityToken(
             issuer: config.GetIssuer(),

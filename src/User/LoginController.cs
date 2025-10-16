@@ -11,7 +11,7 @@ public class LoginController(IUserRepository repository, JwtTokenGenerator jwtTo
         var user = await repository.GetByIdAsync(userId);
         if (user == null)
             return Unauthorized();
-        var token = jwtTokenGenerator.Generate(userId);
+        var token = jwtTokenGenerator.Generate(user);
         return Ok(new { token });
     } 
 }

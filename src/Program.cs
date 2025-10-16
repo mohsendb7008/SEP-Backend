@@ -55,6 +55,11 @@ builder.Services.AddAuthentication(authOptions =>
         IssuerSigningKey = jwtConfig.GetSigningKey()
     };
 });
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("Admin", policy =>
+        policy.RequireRole("AdministrationManager", "FinancialManager", "ProductionManager", "ServiceManager",
+            "MarketingManager", "VicePresident")
+);
 
 var app = builder.Build();
 app.UseHttpsRedirection();
