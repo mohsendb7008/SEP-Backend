@@ -5,7 +5,7 @@ namespace SEP_Backend.Event;
 
 public class EventFactory(GuidProvider guidProvider, TimeProvider timeProvider)
 {
-    public Event Create(EventRequest request) => new()
+    public virtual Event Create(EventRequest request) => new()
     {
         Id = guidProvider.New(),
         Title = request.Title,

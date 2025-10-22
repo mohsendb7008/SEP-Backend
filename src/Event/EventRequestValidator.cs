@@ -2,7 +2,7 @@ namespace SEP_Backend.Event;
 
 public class EventRequestValidator
 {
-    public bool IsValid(EventRequest request, out string? error)
+    public virtual bool IsValid(EventRequest request, out string? error)
     {
         if (string.IsNullOrWhiteSpace(request.Title))
         {
