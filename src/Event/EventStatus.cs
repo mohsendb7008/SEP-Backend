@@ -5,5 +5,6 @@ public enum EventStatus
     Open = 1,
     InProgress = 2,
     Closed = 3,
-    Archived = 4
+    Archived = 4,
+    Rejected = 5
 }

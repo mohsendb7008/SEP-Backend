@@ -9,4 +9,10 @@ public class Event
     public DateTime SubmittedAt { get; set; }
     public decimal BudgetEstimate { get; set; }
     public decimal ApprovedBudget { get; set; }
+
+    public void Update(Event @event)
+    {
+        Status = @event.Status;
+        ApprovedBudget = @event.ApprovedBudget;
+    }
 }
