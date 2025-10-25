@@ -3,6 +3,7 @@ using SEP_Backend;
 var builder = WebApplication.CreateBuilder(args);
 AppBuilderBootstrap.Run(builder);
 var app = builder.Build();
+app.UseCors();
 app.UseHttpsRedirection();
 app.MapControllers();
 app.UseSwagger();

@@ -18,6 +18,7 @@ public static class AppBuilderBootstrap
         AddAuthentication(builder);
         AddAuthorization(builder);
         AddSwagger(builder);
+        AddCors(builder);
     }
 
     private static void AddAuthentication(WebApplicationBuilder builder)
@@ -80,6 +81,20 @@ public static class AppBuilderBootstrap
                     },
                     []
                 }
+            });
+        });
+    }
+
+    private static void AddCors(WebApplicationBuilder builder)
+    {
+        builder.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(policy =>
+            {
+                policy
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
             });
         });
     }
