@@ -19,7 +19,7 @@ public class EventController(IEventRepository repository, EventService service) 
     public async Task CreateAsync([FromBody] EventRequest request) => await service.CreateAsync(request);
 
     [HttpPut("events/{eventId:guid}")]
-    [Authorize(Policy = "Admin")]
+    [Authorize(Policy = "CSO")]
     public async Task<bool> UpdateAsync([FromRoute] Guid eventId, [FromBody] Event @event)
     {
         @event.Id = eventId;
