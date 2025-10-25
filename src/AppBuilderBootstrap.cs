@@ -47,7 +47,7 @@ public static class AppBuilderBootstrap
     {
         builder.Services.AddAuthorizationBuilder()
             .AddPolicy("CSO", policy =>
-                policy.RequireRole("CustomerServiceOfficer", "SeniorCustomerServiceOfficer")
+                policy.RequireRole("CustomerServiceOfficer", "SeniorCustomerServiceOfficer", "FinancialManager")
             )
             .AddPolicy("Admin", policy =>
                 policy.RequireRole("AdministrationManager", "FinancialManager", "ProductionManager", "ServiceManager",
@@ -59,7 +59,7 @@ public static class AppBuilderBootstrap
     {
         builder.Services.AddSwaggerGen(swaggerOptions =>
         {
-            swaggerOptions.AddSecurityDefinition("Bearer" , new OpenApiSecurityScheme
+            swaggerOptions.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
                 Name = "Authorization",
                 Type = SecuritySchemeType.ApiKey,
@@ -70,12 +70,12 @@ public static class AppBuilderBootstrap
             swaggerOptions.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
                 {
-                    new OpenApiSecurityScheme 
+                    new OpenApiSecurityScheme
                     {
-                        Reference = new OpenApiReference 
-                        { 
-                            Type = ReferenceType.SecurityScheme, 
-                            Id = "Bearer" 
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
                         }
                     },
                     []
