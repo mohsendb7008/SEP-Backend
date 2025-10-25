@@ -12,7 +12,10 @@ public class Event
 
     public void Update(Event @event)
     {
+        Title = @event.Title;
+        Description = @event.Description;
         Status = @event.Status;
+        BudgetEstimate = @event.BudgetEstimate;
         ApprovedBudget = @event.ApprovedBudget;
     }
 }

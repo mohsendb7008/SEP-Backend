@@ -13,4 +13,8 @@ public class EventController(IEventRepository repository, EventService service) 
     [HttpPost("events/create")]
     [Authorize(Roles = "CustomerServiceOfficer")]
     public async Task CreateAsync([FromBody] EventRequest request) => await service.CreateAsync(request);
+
+    [HttpPut("events/update")]
+    [Authorize(Policy = "Admin")]
+    public async Task<bool> UpdateAsync([FromBody] Event @event) => await repository.UpdateAsync(@event);
 }
