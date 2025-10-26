@@ -10,9 +10,9 @@ public class TaskRepository(AppDbContext dbContext) : ITaskRepository
         await dbContext.SaveChangesAsync();
     }
 
-    public async Task<List<ETask>> GetAllForUserAsync(Guid userId) =>
-        await dbContext.Tasks.Where(t => t.UserId == userId).ToListAsync();
+    public async Task<List<ETask>> GetAllForUserAsync(Guid userId) => await dbContext.Tasks
+        .Where(t => t.UserId == userId).Include(t => t.Event).ToListAsync();
 
-    public async Task<List<ETask>> GetAllForEventAsync(Guid eventId) =>
-        await dbContext.Tasks.Where(t => t.EventId == eventId).ToListAsync();
+    public async Task<List<ETask>> GetAllForEventAsync(Guid eventId) => await dbContext.Tasks
+        .Where(t => t.EventId == eventId).Include(t => t.User).ToListAsync();
 }

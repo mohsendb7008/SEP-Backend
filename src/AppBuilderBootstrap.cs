@@ -50,6 +50,9 @@ public static class AppBuilderBootstrap
             .AddPolicy("CSO", policy =>
                 policy.RequireRole("CustomerServiceOfficer", "SeniorCustomerServiceOfficer", "FinancialManager")
             )
+            .AddPolicy("Task", policy =>
+                policy.RequireRole("ProductionManager", "ServiceManager")
+            )
             .AddPolicy("Admin", policy =>
                 policy.RequireRole("AdministrationManager", "FinancialManager", "ProductionManager", "ServiceManager",
                     "MarketingManager", "VicePresident")
