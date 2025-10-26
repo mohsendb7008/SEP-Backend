@@ -1,5 +1,6 @@
 using Autofac;
 using SEP_Backend.Common;
+using SEP_Backend.ETask;
 using SEP_Backend.Event;
 using SEP_Backend.Review;
 using SEP_Backend.User;
@@ -18,5 +19,6 @@ public class AppModule : Module
         builder.RegisterModule<UserModule>();
         builder.RegisterModule<EventModule>();
         builder.RegisterModule<ReviewModule>();
+        builder.RegisterModule<TaskModule>();
     }
 }
