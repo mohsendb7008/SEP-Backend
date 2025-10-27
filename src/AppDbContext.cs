@@ -8,6 +8,7 @@ public class AppDbContext : DbContext
     public DbSet<Event.Event> Events { get; set; }
     public DbSet<Review.Review> Reviews { get; set; }
     public DbSet<ETask.ETask> Tasks { get; set; }
+    public DbSet<Budget.Budget> Budgets { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
