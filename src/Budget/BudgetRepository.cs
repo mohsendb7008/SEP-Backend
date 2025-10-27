@@ -10,6 +10,9 @@ public class BudgetRepository(AppDbContext dbContext) : IBudgetRepository
         return budgets;
     }
 
+    public async Task<Budget?> GetByIdAsync(Guid budgetId) => await dbContext.Budgets
+        .Where(b => b.Id == budgetId).Include(b => b.Event).FirstAsync();
+
     public async Task CreateAsync(Budget budget)
     {
         await dbContext.Budgets.AddAsync(budget);
