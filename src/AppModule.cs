@@ -1,4 +1,5 @@
 using Autofac;
+using SEP_Backend.Budget;
 using SEP_Backend.Common;
 using SEP_Backend.ETask;
 using SEP_Backend.Event;
@@ -20,5 +21,6 @@ public class AppModule : Module
         builder.RegisterModule<EventModule>();
         builder.RegisterModule<ReviewModule>();
         builder.RegisterModule<TaskModule>();
+        builder.RegisterModule<BudgetModule>();
     }
 }
