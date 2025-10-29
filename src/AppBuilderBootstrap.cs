@@ -47,15 +47,19 @@ public static class AppBuilderBootstrap
     private static void AddAuthorization(WebApplicationBuilder builder)
     {
         builder.Services.AddAuthorizationBuilder()
-            .AddPolicy("CSO", policy =>
+            .AddPolicy("UserManagement", policy =>
+                policy.RequireRole("AdministrationManager", "HumanResources", "VicePresident")
+            )
+            .AddPolicy("EventManagement", policy =>
                 policy.RequireRole("CustomerServiceOfficer", "SeniorCustomerServiceOfficer", "FinancialManager")
             )
-            .AddPolicy("Task", policy =>
-                policy.RequireRole("ProductionManager", "ServiceManager")
+            .AddPolicy("ReviewManagement", policy =>
+                policy.RequireRole("SeniorCustomerServiceOfficer", "VicePresident")
             )
-            .AddPolicy("Admin", policy =>
-                policy.RequireRole("AdministrationManager", "FinancialManager", "ProductionManager", "ServiceManager",
-                    "MarketingManager", "VicePresident")
+            .AddPolicy("TaskManagement", policy =>
+                policy.RequireRole("ProductionManager", "ServiceManager")
+            ).AddPolicy("BudgetManagement", policy =>
+                policy.RequireRole("FinancialManager", "ProductionManager", "ServiceManager", "MarketingManager")
             );
     }
 
