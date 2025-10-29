@@ -10,14 +10,14 @@ public class UserController(IUserRepository repository) : Controller
     public async Task<List<User>> GetAllAsync() => await repository.GetAllAsync();
 
     [HttpPost("users/create")]
-    [Authorize]
+    [Authorize(Policy = "UserManagement")]
     public async Task<bool> CreateAsync([FromBody] User user) => await repository.CreateAsync(user);
 
     [HttpPut("users/update")]
-    [Authorize(Policy = "Admin")]
+    [Authorize(Policy = "UserManagement")]
     public async Task<bool> UpdateAsync([FromBody] User user) => await repository.UpdateAsync(user);
 
     [HttpDelete("users/delete")]
-    [Authorize(Roles = "HumanResources")]
+    [Authorize(Policy = "UserManagement")]
     public async Task<bool> DeleteAsync([FromQuery] Guid userId) => await repository.DeleteAsync(userId);
 }
