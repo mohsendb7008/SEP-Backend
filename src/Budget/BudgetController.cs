@@ -12,12 +12,16 @@ public class BudgetController(IBudgetRepository repository, BudgetService servic
         await repository.GetAllForEventAsync(eventId);
 
     [HttpPost("budgets/{eventId:guid}")]
-    [Authorize(Roles = "FinancialManager")]
+    [Authorize(Policy = "BudgetManagement")]
     public async Task ProposeAsync([FromRoute] Guid eventId, [FromQuery] decimal amount) =>
         await service.ProposeBudget(eventId, amount);
 
     [HttpPut("budgets/{budgetId:guid}")]
-    [Authorize(Roles = "FinancialManager")]
+    [Authorize(Policy = "BudgetManagement")]
     public async Task UpdateAsync([FromRoute] Guid budgetId, [FromQuery] decimal amount) =>
         await service.UpdateBudget(budgetId, amount);
+
+    [HttpDelete("budgets/{budgetId:guid}")]
+    [Authorize(Policy = "BudgetManagement")]
+    public async Task<bool> DeleteAsync([FromRoute] Guid budgetId) => await repository.DeleteAsync(budgetId);
 }

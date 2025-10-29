@@ -6,4 +6,5 @@ public interface IBudgetRepository
     Task<Budget?> GetByIdAsync(Guid budgetId);
     Task CreateAsync(Budget budget);
     Task<bool> UpdateAsync(Budget budget);
+    Task<bool> DeleteAsync(Guid budgetId);
 }
