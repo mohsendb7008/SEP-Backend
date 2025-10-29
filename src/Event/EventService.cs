@@ -6,7 +6,7 @@ public class EventService(IEventRepository repository, EventFactory factory, Eve
     {
         var isValid = validator.IsValid(request, out var error);
         if (!isValid)
-            throw new BadHttpRequestException(error ?? "");
+            throw new BadHttpRequestException(error ?? string.Empty);
         var @event = factory.Create(request);
         await repository.CreateAsync(@event);
     }

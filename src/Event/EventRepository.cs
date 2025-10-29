@@ -21,10 +21,20 @@ public class EventRepository(AppDbContext dbContext) : IEventRepository
 
     public async Task<bool> UpdateAsync(Event @event)
     {
-        var existingEvent = await dbContext.Events.FindAsync(@event.Id);
+        var existingEvent = await GetByIdAsync(@event.Id);
         if (existingEvent == null)
             return false;
         existingEvent.Update(@event);
+        await dbContext.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> DeleteAsync(Guid eventId)
+    {
+        var @event = await GetByIdAsync(eventId);
+        if (@event == null)
+            return false;
+        dbContext.Events.Remove(@event);
         await dbContext.SaveChangesAsync();
         return true;
     }
