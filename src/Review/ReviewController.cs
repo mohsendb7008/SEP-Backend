@@ -12,12 +12,16 @@ public class ReviewController(IReviewRepository repository, ReviewService servic
     public async Task<List<Review>> GetAllAsync() => await repository.GetAllAsync();
 
     [HttpPost("reviews/approve/{eventId:guid}")]
-    [Authorize(Roles = "SeniorCustomerServiceOfficer")]
+    [Authorize(Policy = "ReviewManagement")]
     public async Task ApproveAsync([FromRoute] Guid eventId, [FromBody] string comments) =>
         await service.CreateAsync(eventId, EventStatus.InProgress, comments);
 
     [HttpPost("reviews/reject/{eventId:guid}")]
-    [Authorize(Roles = "SeniorCustomerServiceOfficer")]
+    [Authorize(Policy = "ReviewManagement")]
     public async Task RejectAsync([FromRoute] Guid eventId, [FromBody] string comments) =>
         await service.CreateAsync(eventId, EventStatus.Rejected, comments);
+
+    [HttpDelete("reviews/{reviewId:guid}")]
+    [Authorize(Policy = "ReviewManagement")]
+    public async Task<bool> DeleteAsync([FromRoute] Guid reviewId) => await repository.DeleteAsync(reviewId);
 }

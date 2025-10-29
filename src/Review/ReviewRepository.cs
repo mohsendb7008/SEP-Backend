@@ -15,4 +15,14 @@ public class ReviewRepository(AppDbContext dbContext) : IReviewRepository
         await dbContext.Reviews.AddAsync(review);
         await dbContext.SaveChangesAsync();
     }
+
+    public async Task<bool> DeleteAsync(Guid reviewId)
+    {
+        var review = await dbContext.Reviews.FindAsync(reviewId);
+        if (review == null)
+            return false;
+        dbContext.Reviews.Remove(review);
+        await dbContext.SaveChangesAsync();
+        return true;
+    }
 }
