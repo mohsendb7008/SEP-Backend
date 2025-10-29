@@ -6,12 +6,15 @@ public class TaskService(TaskBatchValidator validator, ITaskRepository repositor
     {
         var validation = await validator.IsValid(tasks);
         if (!validation.IsValid)
-            throw new BadHttpRequestException(validation.Error ?? "");
-        foreach (var task in tasks)
-        {
-            task.User = null!;
-            task.Event = null!;
-        }
+            throw new BadHttpRequestException(validation.Error ?? string.Empty);
         await repository.CreateBatchAsync(tasks);
+    }
+
+    public async Task<bool> UpdateAsync(ETask task)
+    {
+        var validation = await validator.IsValid(task);
+        if (!validation.IsValid)
+            throw new BadHttpRequestException(validation.Error ?? string.Empty);
+        return await repository.UpdateAsync(task);
     }
 }

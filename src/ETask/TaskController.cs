@@ -17,6 +17,18 @@ public class TaskController(ITaskRepository repository, TaskService service) : C
         await repository.GetAllForUserAsync(userId);
 
     [HttpPost("tasks/batch")]
-    [Authorize(Policy = "Task")]
+    [Authorize(Policy = "TaskManagement")]
     public async Task CreateBatchTaskAsync([FromBody] ETask[] tasks) => await service.CreateBatchAsync(tasks);
+
+    [HttpPut("tasks/{taskId:guid}")]
+    [Authorize(Policy = "TaskManagement")]
+    public async Task<bool> UpdateTaskAsync([FromRoute] Guid taskId, [FromBody] ETask task)
+    {
+        task.Id = taskId;
+        return await service.UpdateAsync(task);
+    }
+
+    [HttpDelete("tasks/batch")]
+    [Authorize(Policy = "TaskManagement")]
+    public async Task DeleteBatchTaskAsync([FromBody] Guid[] taskIds) => await repository.DeleteBatchAsync(taskIds);
 }
